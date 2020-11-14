@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajet{% endblock %}
+
+{% block body %}
+    <h1>Trajet du voyage {{ voyage.name }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Seat</th>
+                <th>Type</th>
+                <th>Number</th>
+                <th>Gate</th>
+                <th>BaggageDrop</th>
+                <th>DepartureDate</th>
+                <th>ArrivalDate</th>
+                <th>STEP</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.departure }}</td>
+                <td>{{ ticket.arrival }}</td>
+                <td>{{ ticket.seat }}</td>
+                <td>{{ utils.getLabelType(ticket.type) }}</td>
+                <td>{{ ticket.number }}</td>
+                <td>{{ ticket.gate }}</td>
+                <td>{{ ticket.baggageDrop }}</td>
+                <td>{{ ticket.departureDate ? ticket.departureDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ticket.arrivalDate ? ticket.arrivalDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ticket.step }}</td>
+                <td>
+                    <a href="{{ path('ticket_show', {'id': ticket.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="btn btn-info">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ticket_new', {'id': voyage.id}) }}" class="btn btn-primary">Nouvelle etape</a>
+{% endblock %}
