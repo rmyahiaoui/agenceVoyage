@@ -18,7 +18,7 @@ class TicketType extends AbstractType
         $builder
             ->add('departure',TextType::class ,[ 'label' => 'Depart','attr' => ['class' => 'form-control','placeholder' =>'Depart']])
             ->add('arrival',TextType::class ,[ 'label' => 'Arrivé','attr' => ['class' => 'form-control','placeholder' =>'Arrivé']])
-            ->add('seat',TextType::class ,[ 'label' => 'Siege','attr' => ['class' => 'form-control','placeholder' =>'Siege']])
+            ->add('seat',TextType::class ,[ 'required' => false,'label' => 'Siege','attr' => ['class' => 'form-control','placeholder' =>'Siege']])
             ->add('type', ChoiceType::class, [
                 'choices'=>  [
                      'Avion'    => 1,
@@ -29,9 +29,9 @@ class TicketType extends AbstractType
                 'attr' => ['class' => 'form-control']
 
             ])
-            ->add('number',TextType::class ,[ 'label' => 'Numéro','attr' => ['class' => 'form-control','placeholder' =>'Numéro']])
-            ->add('gate',TextType::class ,[ 'label' => 'Gate','attr' => ['class' => 'form-control','placeholder' =>'Gate']])
-            ->add('baggageDrop',TextType::class ,[ 'label' => 'BaggageDrop','attr' => ['class' => 'form-control','placeholder' =>'BaggageDrop']])
+            ->add('number',TextType::class ,[ 'required' => false, 'label' => 'Numéro','attr' => ['class' => 'form-control','placeholder' =>'Numéro']])
+            ->add('gate',TextType::class ,['required' => false, 'label' => 'Gate','attr' => ['class' => 'form-control','placeholder' =>'Gate']])
+            ->add('baggageDrop',TextType::class ,['required' => false, 'label' => 'BaggageDrop','attr' => ['class' => 'form-control','placeholder' =>'BaggageDrop']])
             ->add('departureDate', DateTimeType::class, [
                 'label' => 'Date de depart'
             ])

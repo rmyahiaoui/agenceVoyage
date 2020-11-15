@@ -3,7 +3,12 @@ namespace App\Service;
 
 class Utils
 {
-    public function getLabelType(int $type = 1) {
+    /**
+     * @param int $type
+     * @return string
+     */
+    public function getLabelType(int $type = 1)
+    {
         $label ='';
 
         switch($type) {

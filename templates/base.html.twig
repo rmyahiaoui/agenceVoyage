@@ -19,6 +19,17 @@
     </head>
 
     <body>
+    {% for message in app.flashes('errors') %}
+        <div class="alert alert-warning">
+            {{ message }}
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
         <header>
             <nav class="navbar navbar-inverse navbar-static-top ">
                 <a class="navbar-brand" href="#">Agence Voyage</a>

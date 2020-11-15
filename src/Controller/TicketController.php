@@ -36,16 +36,19 @@ class TicketController extends AbstractController
         //$voyage = $entityManager->find(Voyage::class, $request->get('voyage'));
         $ticket->setVoyage($voyage);
 
-
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($ticket);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('voyage_show',['id'=> $voyage]);
+            try {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($ticket);
+                $entityManager->flush();
+                $this->addFlash('success', 'Insertion success');
+                return $this->redirectToRoute('voyage_show',['id'=> $voyage]);
+            } catch (\Exception $e) {
+                $this->addFlash('errors', 'Une erreur est survenu lors de l\'Insertion');
+            }
         }
 
         return $this->render('ticket/new.html.twig', [
@@ -74,9 +77,13 @@ class TicketController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('voyage_show',['id'=> $ticket->getVoyage()]);
+            try {
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Mise à jour success');
+                return $this->redirectToRoute('voyage_show',['id'=> $ticket->getVoyage()]);
+            } catch (\Exception $e) {
+                $this->addFlash('errors', 'Une erreur est survenu lors de la mise à jour');
+            }
         }
 
         return $this->render('ticket/edit.html.twig', [
@@ -93,11 +100,16 @@ class TicketController extends AbstractController
     {
         $voyage= $ticket->getVoyage();
         if ($this->isCsrfTokenValid('delete'.$ticket->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($ticket);
-            $entityManager->flush();
+            try{
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($ticket);
+                $entityManager->flush();
+                $this->addFlash('success', 'Suppression success');
+            } catch (\Exception $e) {
+                $this->addFlash('errors', 'Une erreur est survenu lors de la suppression');
+            }
+
         }
         return $this->redirectToRoute('voyage_show',['id'=> $voyage]);
-
     }
 }

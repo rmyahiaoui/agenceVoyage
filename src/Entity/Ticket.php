@@ -7,6 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TicketRepository::class)
+ * @ORM\Table(name="ticket",
+ *     uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="ticket_departure_unique", columns={"departure","voyage_id"}),
+ *      @ORM\UniqueConstraint(name="ticket_arrival_unique", columns={"arrival","voyage_id"}),
+ *     })
  */
 class Ticket
 {
