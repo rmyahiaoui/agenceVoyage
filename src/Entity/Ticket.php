@@ -72,11 +72,6 @@ class Ticket
      */
     private $arrivalDate;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $step;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -206,15 +201,4 @@ class Ticket
         return $this;
     }
 
-    public function getStep(): ?int
-    {
-        return $this->step;
-    }
-
-    public function setStep(int $step): self
-    {
-        $this->step = $step;
-
-        return $this;
-    }
 }

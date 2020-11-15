@@ -3,9 +3,11 @@
 {% block title %}New Voyage{% endblock %}
 
 {% block body %}
-    <h1>Create new Voyage</h1>
-
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('voyage_index') }}">Voyages</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Création nouveau voyage</li>
+        </ol>
+    </nav>
     {{ include('voyage/_form.html.twig') }}
-
-    <a href="{{ path('voyage_index') }}">back to list</a>
 {% endblock %}

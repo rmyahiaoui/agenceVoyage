@@ -3,7 +3,12 @@
 {% block title %}Edit Voyage{% endblock %}
 
 {% block body %}
-    <h1>Edit Voyage</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('voyage_index') }}">Voyages</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modification voyage</li>
+        </ol>
+    </nav>
 
     {{ include('voyage/_form.html.twig', {'button_label': 'Update'}) }}
 

@@ -32,7 +32,7 @@ class Voyage
 
     /**
      * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="voyage")
-     * @OrderBy({"step" = "ASC"})
+     * @OrderBy({"departureDate" = "ASC"})
      */
     private $tickets;
 

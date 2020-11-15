@@ -6,7 +6,6 @@ use App\Entity\Ticket;
 use App\Entity\Voyage;
 use App\Form\TicketType;
 use App\Repository\TicketRepository;
-use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +51,7 @@ class TicketController extends AbstractController
         return $this->render('ticket/new.html.twig', [
             'ticket' => $ticket,
             'form' => $form->createView(),
+            'button_label' => 'Ajouter'
         ]);
     }
 
@@ -82,6 +82,7 @@ class TicketController extends AbstractController
         return $this->render('ticket/edit.html.twig', [
             'ticket' => $ticket,
             'form' => $form->createView(),
+            'button_label' => 'Modifier'
         ]);
     }
 
@@ -90,12 +91,13 @@ class TicketController extends AbstractController
      */
     public function delete(Request $request, Ticket $ticket): Response
     {
+        $voyage= $ticket->getVoyage();
         if ($this->isCsrfTokenValid('delete'.$ticket->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($ticket);
             $entityManager->flush();
         }
+        return $this->redirectToRoute('voyage_show',['id'=> $voyage]);
 
-        return $this->redirectToRoute('ticket_index');
     }
 }

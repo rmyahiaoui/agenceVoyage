@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit Ticket{% endblock %}
-
 {% block body %}
-    <h1>Edit Ticket</h1>
-
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('voyage_index') }}">Voyages</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('voyage_show',{'id' : ticket.voyage.id}) }}">Voyage</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edition du trajet {{ ticket.departure }} -> {{ ticket.arrival }}</li>
+        </ol>
+    </nav>
     {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('ticket_index') }}">back to list</a>
 
-    {{ include('ticket/_delete_form.html.twig') }}
 {% endblock %}

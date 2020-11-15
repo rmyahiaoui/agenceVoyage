@@ -3,7 +3,7 @@ namespace App\Service;
 
 class Utils
 {
-    public function getLabelType(int $type) {
+    public function getLabelType(int $type = 1) {
         $label ='';
 
         switch($type) {
@@ -19,6 +19,9 @@ class Utils
             case 4:
                 $label ='Bateau';
                 break;
+            default:
+                $label ='Avion';
+            break;
         }
         return $label;
     }

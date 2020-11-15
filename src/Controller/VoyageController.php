@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Voyage;
 use App\Form\VoyageType;
-use App\Repository\TicketRepository;
 use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,6 +45,7 @@ class VoyageController extends AbstractController
         return $this->render('voyage/new.html.twig', [
             'voyage'    => $voyage,
             'form'      => $form->createView(),
+            'button_label' => 'Ajouter'
         ]);
     }
 
@@ -77,6 +77,7 @@ class VoyageController extends AbstractController
         return $this->render('voyage/edit.html.twig', [
             'voyage' => $voyage,
             'form' => $form->createView(),
+            'button_label' => 'Modifier'
         ]);
     }
 

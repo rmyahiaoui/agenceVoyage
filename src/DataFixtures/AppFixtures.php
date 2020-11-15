@@ -13,10 +13,13 @@ class AppFixtures extends Fixture
         $voyage = new Voyage();
         $voyage->setName('Alicante');
         $voyage->setDuree(7);
+        $voyage->setDescription('
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris c
+        ondimentum nibh, ut fermentum massa justo sit amet risus. 
+        Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>');
         $manager->persist($voyage);
 
         $ticket5 = new Ticket();
-        $ticket5->setStep(1);
         $ticket5->setDeparture('nice');
         $ticket5->setArrival('marseille');
         $ticket5->setBaggageDrop('200');
@@ -29,7 +32,6 @@ class AppFixtures extends Fixture
         $manager->persist($ticket5);
 
         $ticket1 = new Ticket();
-        $ticket1->setStep(2);
         $ticket1->setDeparture('marseille');
         $ticket1->setArrival('barcelone');
         $ticket1->setBaggageDrop('344');
@@ -43,7 +45,6 @@ class AppFixtures extends Fixture
         $manager->persist($ticket1);
 
         $ticket3 = new Ticket();
-        $ticket3->setStep(3);
         $ticket3->setDeparture('barcelone');
         $ticket3->setArrival('madrid');
         $ticket3->setBaggageDrop('500');
@@ -55,7 +56,6 @@ class AppFixtures extends Fixture
         $manager->persist($ticket3);
 
         $ticket2 = new Ticket();
-        $ticket2->setStep(4);
         $ticket2->setDeparture('madrid');
         $ticket2->setArrival('alicante');
         $ticket2->setBaggageDrop('500');
@@ -71,7 +71,6 @@ class AppFixtures extends Fixture
 
 
         $ticket4 = new Ticket();
-        $ticket4->setStep(5);
         $ticket4->setDeparture('alicante');
         $ticket4->setArrival('canari');
         $ticket4->setSeat('24A');
@@ -87,10 +86,10 @@ class AppFixtures extends Fixture
         $voyage2 = new Voyage();
         $voyage2->setName('NEW YORK');
         $voyage2->setDuree(14);
+        $voyage2->setDescription('<p>usce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>');
         $manager->persist($voyage2);
 
         $ticket5 = new Ticket();
-        $ticket5->setStep(1);
         $ticket5->setDeparture('nice');
         $ticket5->setArrival('marseille');
         $ticket5->setBaggageDrop('200');
@@ -103,7 +102,6 @@ class AppFixtures extends Fixture
         $manager->persist($ticket5);
 
         $ticket1 = new Ticket();
-        $ticket1->setStep(2);
         $ticket1->setDeparture('marseille');
         $ticket1->setArrival('paris');
         $ticket1->setBaggageDrop('344');
@@ -117,7 +115,6 @@ class AppFixtures extends Fixture
         $manager->persist($ticket1);
 
         $ticket3 = new Ticket();
-        $ticket3->setStep(3);
         $ticket3->setDeparture('paris');
         $ticket3->setArrival('NEW YORK');
         $ticket3->setBaggageDrop('500');
@@ -127,7 +124,6 @@ class AppFixtures extends Fixture
         $ticket3->setDepartureDate(new \DateTime('01/02/2020 11:00:00'));
         $ticket3->setArrivalDate(new \DateTime('01/02/2020 14:00'));
         $manager->persist($ticket3);
-
 
         $manager->flush();
     }

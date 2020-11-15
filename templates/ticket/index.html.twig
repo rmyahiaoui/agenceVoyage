@@ -1,31 +1,24 @@
-{% extends 'base.html.twig' %}
+<div class="container">
+        <h4>Trajets du voyage {{ voyage.name }}</h4>
 
-{% block title %}Trajet{% endblock %}
-
-{% block body %}
-    <h1>Trajet du voyage {{ voyage.name }}</h1>
-
-    <table class="table">
+        <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Departure</th>
-                <th>Arrival</th>
-                <th>Seat</th>
-                <th>Type</th>
-                <th>Number</th>
-                <th>Gate</th>
-                <th>BaggageDrop</th>
-                <th>DepartureDate</th>
-                <th>ArrivalDate</th>
-                <th>STEP</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Depart</th>
+            <th>Arriver</th>
+            <th>Siege</th>
+            <th>Type</th>
+            <th>Numéro</th>
+            <th>Gate</th>
+            <th>BaggageDrop</th>
+            <th>Date de depart</th>
+            <th>Date d'arriver</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         {% for ticket in tickets %}
             <tr>
-                <td>{{ ticket.id }}</td>
                 <td>{{ ticket.departure }}</td>
                 <td>{{ ticket.arrival }}</td>
                 <td>{{ ticket.seat }}</td>
@@ -35,10 +28,9 @@
                 <td>{{ ticket.baggageDrop }}</td>
                 <td>{{ ticket.departureDate ? ticket.departureDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ ticket.arrivalDate ? ticket.arrivalDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ ticket.step }}</td>
                 <td>
-                    <a href="{{ path('ticket_show', {'id': ticket.id}) }}" class="btn btn-primary">show</a>
-                    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="btn btn-info">edit</a>
+                    <a href="{{ path('ticket_show', {'id': ticket.id}) }}" class="glyphicon glyphicon-eye-open"></a>
+                    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="glyphicon glyphicon-edit"></a>
                 </td>
             </tr>
         {% else %}
@@ -47,7 +39,8 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+        </table>
 
-    <a href="{{ path('ticket_new', {'id': voyage.id}) }}" class="btn btn-primary">Nouvelle etape</a>
-{% endblock %}
+        <a href="{{ path('ticket_new', {'id': voyage.id}) }}" class="btn btn-primary">Nouveau trajet</a>
+</div>
+

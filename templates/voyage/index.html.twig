@@ -1,39 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voyage index{% endblock %}
+{% block title %}Liste des Voyages{% endblock %}
 
 {% block body %}
-    <h1>Voyage index</h1>
-
-    <table class="table">
-        <thead>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Liste des Voyages</li>
+        </ol>
+    </nav>
+        <h2>Liste des Voyages</h2>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
+                <th scope="col">Nom</th>
                 <th scope="col">Description</th>
-                <th scope="col">Duree</th>
-                <th scope="col">actions</th>
+                <th scope="col">Durée</th>
+                <th scope="col"></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for voyage in voyages %}
-            <tr>
-                <td>{{ voyage.id }}</td>
-                <td>{{ voyage.name }}</td>
-                <td>{{ voyage.description }}</td>
-                <td>{{ voyage.duree }}</td>
-                <td>
-                    <a href="{{ path('voyage_show', {'id': voyage.id}) }}">show</a>
-                    <a href="{{ path('voyage_edit', {'id': voyage.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('voyage_new') }}" class="btn btn-primary">Create new</a>
+            </thead>
+            <tbody>
+            {% for voyage in voyages %}
+                <tr>
+                    <td>{{ voyage.name }}</td>
+                    <td>{{ voyage.description }}</td>
+                    <td>{{ voyage.duree }} Jours</td>
+                    <td>
+                        <a href="{{ path('voyage_show', {'id': voyage.id}) }}" class="glyphicon glyphicon-eye-open"></a>
+                        <a href="{{ path('voyage_edit', {'id': voyage.id}) }}" class="glyphicon glyphicon-edit"></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <a href="{{ path('voyage_new') }}" class="btn btn-primary">Ajouté un voyage</a>
 {% endblock %}
