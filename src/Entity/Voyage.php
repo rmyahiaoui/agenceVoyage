@@ -31,7 +31,7 @@ class Voyage
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="voyage")
+     * @ORM\OneToMany(targetEntity=Ticket::class, cascade={"remove"}, mappedBy="voyage")
      * @OrderBy({"departureDate" = "ASC"})
      */
     private $tickets;
